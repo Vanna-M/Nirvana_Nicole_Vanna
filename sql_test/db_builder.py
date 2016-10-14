@@ -15,24 +15,36 @@ c = db.cursor()    #facilitate db ops
 #db.close()
 
 
+#make table the first
 q = "CREATE TABLE students (name TEXT, age INTEGER, id INTEGER)"
-#c.execute(q)    #run SQL query
-fObj = open("peeps.csv") 
+c.execute(q)    #run SQL query
+
+#open csv
+fObj = open("peeps.csv")
+#read csv
 d=csv.DictReader(fObj)
+#add csv into table
 for k in d:
     p = "INSERT INTO students VALUES ("+k['name']+","+k['age']+","+k['id']+")"
     c.execute(p)
 
-
-
-'''
+#make table the second
 q = "CREATE TABLE courses (code TEXT, id INTEGER, mark INTEGER)"
-
 c.execute(q)
-'''
+
+#open csv the second
+fObj = open("courses.csv")
+#read csv
+d = csv.DictReader(fObj)
+
+#add csv into table
+for k in d:
+    p = "INSERT INTO courses VALUES("+k['name'] + "," + k['id'] + "," + k['mark']+")"
+    c.execute(p)
+
+
+
 
 #==========================================================
 db.commit() #save changes
 db.close()  #close database
-
-
