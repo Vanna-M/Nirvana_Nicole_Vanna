@@ -36,5 +36,4 @@ for k in d:
     c.execute(p)
 
 db.commit() #save changes
-
 db.close()  #close database
