@@ -35,14 +35,6 @@ for k in d:
     p = "INSERT INTO courses VALUES(\'"+k['code'] + "\'," + k['id'] + "," + k['mark']+")"
     c.execute(p)
 
-q = "SELECT * FROM students"
-c.execute(q)
-
-q = "SELECT * FROM courses"
-c.execute(q)
-
 db.commit() #save changes
-
-
 
 db.close()  #close database
