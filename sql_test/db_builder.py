@@ -2,17 +2,10 @@ import sqlite3   #enable control of an sqlite database
 import csv       #facilitates CSV I/O
 
 
-
 f="discobandit.db"
 
 db = sqlite3.connect(f) #open if f exists, otherwise create
 c = db.cursor()    #facilitate db ops
-
-#==========================================================
-#INSERT YOUR POPULATE CODE IN THIS ZONE
-#...perhaps by beginning with these examples...
-
-#db.close()
 
 
 #make table the first
@@ -25,7 +18,7 @@ fObj = open("peeps.csv")
 d=csv.DictReader(fObj)
 #add csv into table
 for k in d:
-    p = "INSERT INTO students VALUES ("+k['name']+","+k['age']+","+k['id']+")"
+    p = "INSERT INTO students VALUES (\'" + k['name'] + "\'," + k['age'] + "," + k['id'] + ")"
     c.execute(p)
 
 #make table the second
@@ -39,12 +32,17 @@ d = csv.DictReader(fObj)
 
 #add csv into table
 for k in d:
-    p = "INSERT INTO courses VALUES("+k['name'] + "," + k['id'] + "," + k['mark']+")"
+    p = "INSERT INTO courses VALUES(\'"+k['code'] + "\'," + k['id'] + "," + k['mark']+")"
     c.execute(p)
 
+q = "SELECT * FROM students"
+c.execute(q)
 
+q = "SELECT * FROM courses"
+c.execute(q)
 
-
-#==========================================================
 db.commit() #save changes
+
+
+
 db.close()  #close database
