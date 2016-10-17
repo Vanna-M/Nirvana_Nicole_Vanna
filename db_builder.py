@@ -18,7 +18,7 @@ fObj = open("peeps.csv")
 d=csv.DictReader(fObj)
 #add csv into table
 for k in d:
-    p = "INSERT INTO students VALUES (\'" + k['name'] + "\'," + k['age'] + "," + k['id'] + ")"
+    p = "INSERT INTO students VALUES('%s',%s,%s)"%(k['name'],k['age'],k['id'])
     c.execute(p)
 
 #make table the second
@@ -32,7 +32,7 @@ d = csv.DictReader(fObj)
 
 #add csv into table
 for k in d:
-    p = "INSERT INTO courses VALUES(\'"+k['code'] + "\'," + k['id'] + "," + k['mark']+")"
+    p = "INSERT INTO courses VALUES('%s',%s,%s)"%(k['code'],k['id'],k['mark'])
     c.execute(p)
 
 db.commit() #save changes
